@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Turístico ES - Passeios no Espírito Santo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --azul-pedra: #4A90E2; --azul-profundo: #1E3A5F; --laranja: #FF6B35; --branco: #FFF; --whatsapp: #25D366; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #333; }
+        
+        /* WhatsApp Flutuante */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 65px;
+            height: 65px;
+            z-index: 1000;
+            transition: all 0.3s;
+            animation: pulse 2s infinite;
+        }
+        .whatsapp-float img {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 4px 10px rgba(37, 211, 102, 0.4));
+        }
+        .whatsapp-float:hover { 
+            transform: scale(1.1); 
+        }
+        .whatsapp-float:hover img {
+            filter: drop-shadow(0 6px 15px rgba(37, 211, 102, 0.6));
+        }
+        @keyframes pulse {
+            0% { filter: drop-shadow(0 0 0 0 rgba(37, 211, 102, 0.7)); }
+            70% { filter: drop-shadow(0 0 0 15px rgba(37, 211, 102, 0)); }
+            100% { filter: drop-shadow(0 0 0 0 rgba(37, 211, 102, 0)); }
+        }
+
+        /* Ícone WhatsApp nos botões */
+        .whatsapp-icon-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .whatsapp-icon-btn img {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Ícone grande para footer */
+        .whatsapp-icon-large {
+            width: 50px;
+            height: 50px;
+        }
+
+        /* Navegação */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 999;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--azul-profundo);
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--azul-profundo);
+            font-weight: 600;
+        }
+
+        /* Hero */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(30, 58, 95, 0.8), rgba(74, 144, 226, 0.7)), url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Guarapari_-_ES._Aerial_view_of_the_city_of_Guarapari_and_its_beaches%2C_in_Esp%C3%ADrito_Santo%2C_Brazil.jpg/1280px-Guarapari_-_ES._Aerial_view_of_the_city_of_Guarapari_and_its_beaches%2C_in_Esp%C3%ADrito_Santo%2C_Brazil.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        .hero-content { max-width: 800px; padding: 2rem; }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .hero-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 1rem 2.5rem;
+            background: var(--whatsapp);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+        }
+        .cta-button img {
+            width: 26px;
+            height: 26px;
+        }
+
+        /* Seção Guia */
+        .guia-section {
+            background: var(--azul-profundo);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        .guia-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--whatsapp);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            transition: transform 0.3s;
+        }
+        .guia-whatsapp:hover {
+            transform: scale(1.05);
+        }
+        .guia-whatsapp img {
+            width: 26px;
+            height: 26px;
+        }
+
+        /* Títulos */
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--azul-profundo);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        /* Container padrão para seções com grid */
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        /* Grid padrão 3 colunas */
+        .grid-3-colunas {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        /* Cards Destinos */
+        .destino-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .destino-card:hover {
+            transform: translateY(-10px);
+        }
+        .destino-image {
+            height: 220px;
+            position: relative;
+        }
+        .destino-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .destino-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--laranja);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+        .destino-content { padding: 1.5rem; }
+        .destino-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--azul-profundo);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Restaurantes */
+        .restaurantes-section {
+            background: #f5f7fa;
+            padding: 5rem 2rem;
+        }
+        .restaurantes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .restaurante-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+        .restaurante-header {
+            background: var(--azul-profundo);
+            color: white;
+            padding: 1.5rem;
+        }
+        .restaurante-body { 
+            padding: 1.5rem; 
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .btn-maps {
+            display: inline-block;
+            background: #4285F4;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            margin-top: auto;
+            text-align: center;
+        }
+
+        /* Depoimentos */
+        .depoimentos-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5rem 2rem;
+        }
+        .depoimentos-section .section-title { color: white; }
+        .depoimentos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .depoimento-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .estrelas { color: #FFD700; margin-bottom: 1rem; }
+        .cliente-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .cliente-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--laranja);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* Gastronomia */
+        .gastronomia {
+            background: var(--azul-profundo);
+            color: white;
+            padding: 5rem 2rem;
+        }
+        .pratos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .prato-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        .prato-image { height: 200px; }
+        .prato-image img { width: 100%; height: 100%; object-fit: cover; }
+        .prato-content { padding: 1.5rem; }
+
+        /* Footer */
+        footer {
+            background: var(--azul-profundo);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        .footer-whatsapp {
+            display: inline-block;
+            transition: transform 0.3s;
+            margin: 1rem 0;
+        }
+        .footer-whatsapp:hover {
+            transform: scale(1.1);
+        }
+        .footer-whatsapp img {
+            width: 60px;
+            height: 60px;
+            filter: drop-shadow(0 4px 10px rgba(37, 211, 102, 0.4));
+        }
+
+        /* Responsivo - Tablet: 2 colunas */
+        @media (max-width: 992px) {
+            .grid-3-colunas,
+            .restaurantes-grid,
+            .depoimentos-grid,
+            .pratos-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Responsivo - Mobile: 1 coluna */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+            .grid-3-colunas,
+            .restaurantes-grid,
+            .depoimentos-grid,
+            .pratos-grid {
+                grid-template-columns: 1fr;
+            }
+            .whatsapp-float {
+                width: 55px;
+                height: 55px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Botão WhatsApp Flutuante -->
+    <a href="https://wa.me/5527992973005?text=Olá!%20Vi%20seu%20site%20e%20gostaria%20de%20agendar%20um%20passeio%20turístico%20no%20Espírito%20Santo!" class="whatsapp-float" target="_blank" title="Chamar no WhatsApp">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+
+    <!-- Navegação -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">🌊 Espírito Santo</div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#guia">Guia</a></li>
+                <li><a href="#destinos">Destinos</a></li>
+                <li><a href="#restaurantes">Restaurantes</a></li>
+                <li><a href="#depoimentos">Depoimentos</a></li>
+                <li><a href="#gastronomia">Gastronomia</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <div class="hero-badge">🚗 Motorista de Aplicativo & Guia Turístico</div>
+            <h1>Descubra o Espírito Santo</h1>
+            <p>Passeios personalizados com quem conhece cada canto do estado. Do litoral às montanhas, uma experiência única e segura.</p>
+            <a href="https://wa.me/5527992973005" class="cta-button" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+                Chamar no WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- Seção do Guia -->
+    <section class="guia-section" id="guia">
+        <div class="guia-container">
+            <h2>Seu Guia no Espírito Santo</h2>
+            <p>Sou motorista de aplicativo e guia turístico há anos. Conheço todos os melhores pontos, restaurantes e atalhos para você aproveitar ao máximo sua viagem com segurança e conforto.</p>
+            <p><strong>📍 Atendimento no Aeroporto de Vitória (VIX)</strong></p>
+            <a href="https://wa.me/5527992973005" class="guia-whatsapp" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+                Fale Comigo
+            </a>
+        </div>
+    </section>
+
+    <!-- Destinos -->
+    <section class="section-container" id="destinos">
+        <h2 class="section-title">Destinos Imperdíveis</h2>
+        <div class="grid-3-colunas">
+            <!-- Pedra Azul -->
+            <div class="destino-card">
+                <div class="destino-image">
+                    <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/a4/0f/ff/pousada-pedra-azul.jpg?w=900&h=500&s=1" alt="Pedra Azul">
+                    <span class="destino-badge">Natureza</span>
+                </div>
+                <div class="destino-content">
+                    <h3>Pedra Azul</h3>
+                    <p>📍 Domingos Martins - ES</p>
+                    <p>Cartão-postal com 1.822m de altitude. Trilhas, escalada e clima ameno.</p>
+                </div>
+            </div>
+
+            <!-- Convento da Penha -->
+            <div class="destino-card">
+                <div class="destino-image">
+                    <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/09/98/42/22/convento-n-s-da-penha.jpg?w=900&h=500&s=1" alt="Convento da Penha">
+                    <span class="destino-badge">Histórico</span>
+                </div>
+                <div class="destino-content">
+                    <h3>Convento da Penha</h3>
+                    <p>📍 Vila Velha - ES</p>
+                    <p>Construído no século XVI. Vista panorâmica da Baía de Vitória.</p>
+                </div>
+            </div>
+
+            <!-- Itaúnas -->
+            <div class="destino-card">
+                <div class="destino-image">
+                    <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0c/39/5d/3f/dunas-de-itaunas.jpg?w=700&h=700&s=1" alt="Itaúnas">
+                    <span class="destino-badge">Praias</span>
+                </div>
+                <div class="destino-content">
+                    <h3>Dunas de Itaúnas</h3>
+                    <p>📍 Conceição da Barra - ES</p>
+                    <p>Dunas de até 30m e forró pé-de-serra no extremo norte.</p>
+                </div>
+            </div>
+
+            <!-- Guarapari -->
+            <div class="destino-card">
+                <div class="destino-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Guarapari_-_ES._Aerial_view_of_the_city_of_Guarapari_and_its_beaches%2C_in_Esp%C3%ADrito_Santo%2C_Brazil.jpg/1280px-Guarapari_-_ES._Aerial_view_of_the_city_of_Guarapari_and_its_beaches%2C_in_Esp%C3%ADrito_Santo%2C_Brazil.jpg" alt="Guarapari">
+                    <span class="destino-badge">Litoral</span>
+                </div>
+                <div class="destino-content">
+                    <h3>Guarapari</h3>
+                    <p>📍 Guarapari - ES</p>
+                    <p>Praias de areia monazítica com propriedades terapêuticas.</p>
+                </div>
+            </div>
+
+            <!-- Praia da Costa -->
+            <div class="destino-card">
+                <div class="destino-image">
+                    <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/10/a6/7d/3a/photo3jpg.jpg?w=900&h=-1&s=1" alt="Praia da Costa">
+                    <span class="destino-badge">Urbana</span>
+                </div>
+                <div class="destino-content">
+                    <h3>Praia da Costa</h3>
+                    <p>📍 Vila Velha - ES</p>
+                    <p>Principal praia urbana do estado. Orla completa com ciclovia, quiosques e o famoso calçadão.</p>
+                </div>
+            </div>
+
+            <!-- Manguinhos -->
+            <div class="destino-card">
+                <div class="destino-image">
+                    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEi6Kx6Jdf5U5UoGtVaebMzSx1kb36E4Spy4iaBhA2QZ2Jdf7W-dYubFiP-Xd9Qe-tJvsCOkPuO3XLY7UX67BlJ-3RyyohBrS6jjagxXCksElwQtYvU9YusgUs51TkDr62i4EwEhpIy1xTybgYJ2ssruerSkc3T1tu12zNU53O-FrRgRvy3r6J5qMkJm2Q=s16000" alt="Manguinhos">
+                    <span class="destino-badge">Quiosques</span>
+                </div>
+                <div class="destino-content">
+                    <h3>Manguinhos</h3>
+                    <p>📍 Serra - ES</p>
+                    <p>Praia tranquila com águas cristalinas. Famosa pelos quiosques rústicos pé na areia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Restaurantes -->
+    <section class="restaurantes-section" id="restaurantes">
+        <h2 class="section-title">Onde Comer</h2>
+        <div class="restaurantes-grid">
+            <!-- Quiosque Maresias -->
+            <div class="restaurante-card">
+                <div class="restaurante-header">
+                    <h3>Quiosque Maresias</h3>
+                    <p>🏖️ Manguinhos, Serra - ES</p>
+                </div>
+                <div class="restaurante-body">
+                    <p>Quiosque pé na areia com estrutura completa. Petiscos, porções, bebidas geladas e atendimento familiar.</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Quiosque+Maresias+Manguinhos+Serra+ES" class="btn-maps" target="_blank">📍 Como Chegar</a>
+                </div>
+            </div>
+
+            <!-- Colher de Pau -->
+            <div class="restaurante-card">
+                <div class="restaurante-header">
+                    <h3>Colher de Pau</h3>
+                    <p>🥘 Praia da Costa, Vila Velha - ES</p>
+                </div>
+                <div class="restaurante-body">
+                    <p>Restaurante tradicional com comida caseira de qualidade. Self service variado com pratos quentes, saladas e sobremesas.</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Colher+de+Pau+Praia+da+Costa+Vila+Velha+ES" class="btn-maps" target="_blank">📍 Como Chegar</a>
+                </div>
+            </div>
+
+            <!-- Kizoko Sushi -->
+            <div class="restaurante-card">
+                <div class="restaurante-header">
+                    <h3>Kizoko Sushi</h3>
+                    <p>🍣 Praia da Costa, Vila Velha - ES</p>
+                </div>
+                <div class="restaurante-body">
+                    <p>Restaurante japonês de qualidade. Sushis, sashimis e pratos quentes com peixe fresco. Ambiente moderno.</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Kizoko+Sushi+Praia+da+Costa+Vila+Velha+ES" class="btn-maps" target="_blank">📍 Como Chegar</a>
+                </div>
+            </div>
+
+            <!-- Caranguejo do Assis -->
+            <div class="restaurante-card">
+                <div class="restaurante-header">
+                    <h3>Caranguejo do Assis</h3>
+                    <p>🦀 Ilha das Caieiras, Vitória</p>
+                </div>
+                <div class="restaurante-body">
+                    <p>Caranguejo fresco com vista para o mar. Ambiente autêntico de vila de pescadores.</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Caranguejo+do+Assis+Ilha+das+Caieiras+Vitória+ES" class="btn-maps" target="_blank">📍 Como Chegar</a>
+                </div>
+            </div>
+
+            <!-- Ilha do Caranguejo -->
+            <div class="restaurante-card">
+                <div class="restaurante-header">
+                    <h3>Ilha do Caranguejo</h3>
+                    <p>🦀 Vitória - ES</p>
+                </div>
+                <div class="restaurante-body">
+                    <p>Restaurante moderno especializado em frutos do mar. Excelente atendimento.</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Ilha+do+Caranguejo+Vitória+ES" class="btn-maps" target="_blank">📍 Como Chegar</a>
+                </div>
+            </div>
+
+            <!-- Restaurante Perfil -->
+            <div class="restaurante-card">
+                <div class="restaurante-header">
+                    <h3>Restaurante Perfil</h3>
+                    <p>🍽️ Praia da Costa, Vila Velha</p>
+                </div>
+                <div class="restaurante-body">
+                    <p>Maior self service do ES com 180+ pratos diários.</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Restaurante+Perfil+Praia+da+Costa+Vila+Velha+ES" class="btn-maps" target="_blank">📍 Como Chegar</a>
+                </div>
+            </div>
+
+            <!-- Bar do Bigode -->
+            <div class="restaurante-card">
+                <div class="restaurante-header">
+                    <h3>Bar do Bigode</h3>
+                    <p>🦐 Jesus de Nazaré, Vitória</p>
+                </div>
+                <div class="restaurante-body">
+                    <p>Arroz de mariscos e casquinha de siri. Vista para a Terceira Ponte.</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Bar+do+Bigode+Jesus+de+Nazaré+Vitória+ES" class="btn-maps" target="_blank">📍 Como Chegar</a>
+                </div>
+            </div>
+
+            <!-- Restaurante Atlântica -->
+            <div class="restaurante-card">
+                <div class="restaurante-header">
+                    <h3>Restaurante Atlântica</h3>
+                    <p>🐟 Praia da Costa, Vila Velha</p>
+                </div>
+                <div class="restaurante-body">
+                    <p>Moqueca capixaba e camarão no coco. Tradição e vista privilegiada.</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Restaurante+Atlântica+Praia+da+Costa+Vila+Velha+ES" class="btn-maps" target="_blank">📍 Como Chegar</a>
+                </div>
+            </div>
+
+            <!-- Point do ES -->
+            <div class="restaurante-card">
+                <div class="restaurante-header">
+                    <h3>Point do ES</h3>
+                    <p>🍻 Triângulo das Bermudas, Vitória</p>
+                </div>
+                <div class="restaurante-body">
+                    <p>O point da boemia capixaba. Petiscos e música ao vivo.</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Triângulo+das+Bermudas+Praia+do+Canto+Vitória+ES" class="btn-maps" target="_blank">📍 Como Chegar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Depoimentos -->
+    <section class="depoimentos-section" id="depoimentos">
+        <h2 class="section-title">O que Dizem Meus Clientes</h2>
+        <div class="depoimentos-grid">
+            <div class="depoimento-card">
+                <div class="estrelas">⭐⭐⭐⭐⭐</div>
+                <p>"Melhor guia do Espírito Santo! Conhece todos os atalhos, restaurantes secretos e ainda conta a história de cada lugar."</p>
+                <div class="cliente-info">
+                    <div class="cliente-avatar">MF</div>
+                    <div>
+                        <strong>Maria Fernanda</strong>
+                        <p>São Paulo - SP</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="depoimento-card">
+                <div class="estrelas">⭐⭐⭐⭐⭐</div>
+                <p>"Cheguei no aeroporto e já estava me esperando. Em 3 dias conheci Guarapari, Pedra Azul e as melhores praias."</p>
+                <div class="cliente-info">
+                    <div class="cliente-avatar">JR</div>
+                    <div>
+                        <strong>João Ricardo</strong>
+                        <p>Belo Horizonte - MG</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="depoimento-card">
+                <div class="estrelas">⭐⭐⭐⭐⭐</div>
+                <p>"Fomos em família com crianças e ele soube adaptar o roteiro perfeitamente. As crianças adoraram as dunas de Itaúnas!"</p>
+                <div class="cliente-info">
+                    <div class="cliente-avatar">CL</div>
+                    <div>
+                        <strong>Carla Lima</strong>
+                        <p>Rio de Janeiro - RJ</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="depoimento-card">
+                <div class="estrelas">⭐⭐⭐⭐⭐</div>
+                <p>"Além de motorista, é um excelente fotógrafo! Tirou fotos incríveis nossas no Convento da Penha e na Pedra Azul."</p>
+                <div class="cliente-info">
+                    <div class="cliente-avatar">AS</div>
+                    <div>
+                        <strong>Ana Souza</strong>
+                        <p>Curitiba - PR</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="depoimento-card">
+                <div class="estrelas">⭐⭐⭐⭐⭐</div>
+                <p>"Indicou o Bar do Bigode que foi o melhor caranguejo que comi na vida! Preço justo, sem taxa de turista."</p>
+                <div class="cliente-info">
+                    <div class="cliente-avatar">PO</div>
+                    <div>
+                        <strong>Pedro Oliveira</strong>
+                        <p>Brasília - DF</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="depoimento-card">
+                <div class="estrelas">⭐⭐⭐⭐⭐</div>
+                <p>"Passeio noturno no Triângulo das Bermudas foi incrível! Segurança, pontualidade e diversão garantida."</p>
+                <div class="cliente-info">
+                    <div class="cliente-avatar">LM</div>
+                    <div>
+                        <strong>Lucas Mendes</strong>
+                        <p>Porto Alegre - RS</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gastronomia -->
+    <section class="gastronomia" id="gastronomia">
+        <h2 class="section-title" style="color: white;">Sabores Capixabas</h2>
+        <div class="pratos-grid">
+            <div class="prato-card">
+                <div class="prato-image">
+                    <img src="https://foodandroad.com/wp-content/uploads/2021/06/img-brazil-moqueca-2.jpg" alt="Moqueca">
+                </div>
+                <div class="prato-content">
+                    <h3>Moqueca Capixaba</h3>
+                    <p>Panela de barro, azeite de oliva e urucum. Sem dendê!</p>
+                </div>
+            </div>
+
+            <div class="prato-card">
+                <div class="prato-image">
+                    <img src="https://www.saboresajinomoto.com.br/uploads/images/recipes/torta-capixaba.jpg" alt="Torta">
+                </div>
+                <div class="prato-content">
+                    <h3>Torta Capixaba</h3>
+                    <p>Frutos do mar, palmito e farinha de mandioca.</p>
+                </div>
+            </div>
+
+            <div class="prato-card">
+                <div class="prato-image">
+                    <img src="https://a0ea0a444b.cbaul-cdnwnd.com/4ca86055d8dfd962dd8d9b1fbe38ae34/200000992-21d3422cce/foto%2001.jpg" alt="Garoto">
+                </div>
+                <div class="prato-content">
+                    <h3>Chocolates Garoto</h3>
+                    <p>Fábrica em Vila Velha desde 1929.</p>
+                </div>
+            </div>
+
+            <div class="prato-card">
+                <div class="prato-image">
+                    <img src="https://http2.mlstatic.com/D_NQ_NP_702018-MLB53043734947_122022-O.webp" alt="Vinho">
+                </div>
+                <div class="prato-content">
+                    <h3>Vinho Colonial</h3>
+                    <p>Tradição italiana na Serra Capixaba.</p>
+                </div>
+            </div>
+
+            <div class="prato-card">
+                <div class="prato-image">
+                    <img src="https://uploads-noticias.broto.com.br/2026/01/espirito-santo-premio-queijos-artesanais-627x365.jpg" alt="Queijo">
+                </div>
+                <div class="prato-content">
+                    <h3>Queijos da Serra</h3>
+                    <p>Produção artesanal premiada.</p>
+                </div>
+            </div>
+
+            <div class="prato-card">
+                <div class="prato-image">
+                    <img src="https://media-cdn.tripadvisor.com/media/photo-i/11/69/34/35/caranguejo-do-restaurante.jpg" alt="Caranguejo">
+                </div>
+                <div class="prato-content">
+                    <h3>Caranguejo</h3>
+                    <p>Fresh na Ilha das Caieiras.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <h2>Pronto para conhecer o Espírito Santo?</h2>
+        <p style="margin: 1rem 0;">Clique no ícone abaixo e fale comigo!</p>
+        <a href="https://wa.me/5527992973005" class="footer-whatsapp" target="_blank" title="Chamar no WhatsApp">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+        </a>
+        <p style="margin-top: 2rem; opacity: 0.8;">&copy; 2025 Guia Turístico ES. Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>
